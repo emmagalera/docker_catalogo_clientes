@@ -26,10 +26,14 @@ class Conexion
   {  
     if (!isset(self::$instance))  
     {  
+      
     // self se utiliza para referenciar métodos staticos o atributos estaticos
     //this no puede referenciar a metodos estaticos
     //para acceder a metodos staticos fuera de la clase ::
+    echo 'conexion';
       self::$instance = new PDO(self::$dns, self::$username, self::$password);  
+     
+
       //PDO::FETCH_ASSOC: devuelve un array indexado por el nombre de campo de la tabla.
       //PDO::FETCH_BOTH: (por defecto): devuelve un array indexado por nombre de campo de la tabla y por número de campo.
       self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 

@@ -29,10 +29,10 @@
       <tbody>
         <?php
        
-        include_once'Conexion.php';
+        include_once 'Conexion.php';
       
         $conexion = Conexion::getInstance();
-        echo 'hola otra';
+        
         
         $sql = "select * from Clientes";
         $sentencia=$conexion->prepare($sql);

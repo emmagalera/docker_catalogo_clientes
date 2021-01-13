@@ -1,22 +1,35 @@
 version: '2'
 services:
+  web:
+    container_name: apache-php-pdo
+    restart: always
+    # lo cual hace que docker-compose busque un Dockerfile en el directorio especificado
+    # (. en este caso) y use la imagen que se construirá a partir de dicho archivo.
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    #depends_on expresa el orden de inicio (e implícitamente el orden de extracción de imágenes)   
+    # depends_on no esperará a que mysql  estén"listos" antes de iniciar web, 
+    # solo hasta que se hayan iniciado
+    depends_on:
+      - mysql
+    ports:
+      - "8100:80"
+    volumes:
+      - ./AppPHP:/var/www/html
   mysql:
     container_name: mysqlc
     restart: always
     image: mysql:5.7
     environment:
+      MYSQL_DATABASE: Catalogo
+      MYSQL_USER: juan
+      MYSQL_PASSWORD: juan
       MYSQL_ROOT_PASSWORD: 'toor' # TODO: Change this
     ports:
-      - "3306:3306"
+      - "9906:3306"
     volumes:
       - ./data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  php:
-    container_name: apache-php
-    restart: always
-    image: newdeveloper/apache-php
-    ports:
-      - "80:80"
-    volumes:
-      - ./AppPHP:/var/www/html
+  
