@@ -19,4 +19,4 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./html:/var/www/html
+      - ./AppPHP:/var/www/AppPHP
