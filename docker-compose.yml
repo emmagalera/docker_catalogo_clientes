@@ -23,8 +23,8 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_DATABASE: Catalogo
-      MYSQL_USER: juan
-      MYSQL_PASSWORD: juan
+      # MYSQL_USER: juan
+      # MYSQL_PASSWORD: juan
       MYSQL_ROOT_PASSWORD: 'toor' # TODO: Change this
     ports:
       - "9906:3306"
