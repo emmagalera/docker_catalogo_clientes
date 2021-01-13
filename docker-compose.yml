@@ -13,9 +13,9 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   php:
-    container_name: php
+    container_name: apache-php
     restart: always
-    image: ualmtorres/phalcon-apache-ubuntu
+    image: newdeveloper/apache-php
     ports:
       - "80:80"
     volumes:

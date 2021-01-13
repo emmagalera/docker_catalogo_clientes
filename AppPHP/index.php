@@ -28,14 +28,18 @@
       </thead>
       <tbody>
         <?php
+       
         include_once'Conexion.php';
+      
         $conexion = Conexion::getInstance();
+        echo 'hola otra';
+        
         $sql = "select * from Clientes";
         $sentencia=$conexion->prepare($sql);
         $sentencia->execute();
         $registros = $sentencia->fetchAll();
         
-
+        
         foreach($registros as $fila)
         { 
          echo "<tr><td> " .$fila['name'] . 
