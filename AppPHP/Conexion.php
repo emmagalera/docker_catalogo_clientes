@@ -30,7 +30,7 @@ class Conexion
     // self se utiliza para referenciar métodos staticos o atributos estaticos
     //this no puede referenciar a metodos estaticos
     //para acceder a metodos staticos fuera de la clase ::
-    echo 'conexion';
+    
       self::$instance = new PDO(self::$dns, self::$username, self::$password);  
      
 
