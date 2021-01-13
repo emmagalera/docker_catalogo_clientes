@@ -28,21 +28,26 @@
       </thead>
       <tbody>
         <?php
-        $conexion = new mysqli("mysql", "root", "secret", "SG");
+        include_once'Conexion.php';
+        $conexion = Conexion::getInstance();
+        $sql = "select * from Clientes";
+        $sentencia=$conexion->prepare($sql);
+        $sentencia->execute();
+        $registros = $sentencia->fetchAll();
+        
 
-        $cadenaSQL = "select * from s_customer";
-        $resultado = $conexion->query($cadenaSQL);
-
-        while ($fila = $resultado->fetch_object()) {
-         echo "<tr><td> " .$fila->name . 
-         "</td><td>" . $fila->credit_rating .
-         "</td><td>" . $fila->address .
-         "</td><td>" . $fila->city .
-         "</td><td>" . $fila->state .
-         "</td><td>" . $fila->country .
-         "</td><td>" . $fila->zip_code .
+        foreach($registros as $fila)
+        { 
+         echo "<tr><td> " .$fila['name'] . 
+         "</td><td>" . $fila['credit_rating'] .
+         "</td><td>" . $fila['address'] .
+         "</td><td>" . $fila['city'] .
+         "</td><td>" . $fila['state'] .
+         "</td><td>" . $fila['country'] .
+         "</td><td>" . $fila['zip_code'] .
          "</td></tr>";
        }
+       $conexion=null; // cierro la conexion
 
        ?>
      </tbody>
