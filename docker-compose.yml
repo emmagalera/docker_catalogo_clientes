@@ -27,12 +27,24 @@ services:
       MYSQL_DATABASE: Catalogo
       # MYSQL_USER: juan #creacion de usuarios a parte de root
       # MYSQL_PASSWORD: juan
-      MYSQL_ROOT_PASSWORD: 'toor' # TODO: Change this
+      MYSQL_ROOT_PASSWORD: 'root' # TODO: Change this
     ports:
       - "9906:3306"
     volumes:
-      - ./data:/var/lib/mysql #creacion de la carpeta data
+      - ./mysql_data:/var/lib/mysql #creacion del volumen 
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql #quiero ejecutar el fichero init.sql que 
       #en la misma carpeta
+  phpmyadmin:
+    container_name: phpmyadmin
+    restart: always
+    image: phpmyadmin
+    ports:      
+      - 8080:80   
+    environment:      
+      - PMA_HOST=mysql    
+    depends_on:      
+      - mysql
+volumes: #para crear volumenes persistentes
+  mysql_data: #crea el volumen fuera del contenedor
 
   
