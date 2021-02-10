@@ -6,6 +6,7 @@ services:
     # lo cual hace que docker-compose busque un Dockerfile en el directorio especificado
     # (. en este caso) y use la imagen que se construirá a partir de dicho archivo.
     build: #estoy trabajando con mi dockerfile propio (creado por mi)
+    #por eso no aoarece el parametro imagen, porque la imagen es propia
       context: ./
       dockerfile: Dockerfile
     #depends_on expresa el orden de inicio (e implícitamente el orden de extracción de imágenes)   
@@ -16,21 +17,22 @@ services:
     ports:
       - "8100:80"
     volumes:
-      - ./AppPHP:/var/www/html #dentro de nuestro proyecto hay una carpeta APPphp y lo va a asociar 
+      - ./AppPHP:/var/www/html #dentro de nuestro proyecto hay una carpeta AppPHP y lo va a asociar 
       #al document root de apache
   mysql:
     container_name: mysqlc
     restart: always
-    image: mysql:5.7
+    image: mysql:5.7 #esta imagen ya no es propia
     environment:
       MYSQL_DATABASE: Catalogo
-      # MYSQL_USER: juan
+      # MYSQL_USER: juan #creacion de usuarios a parte de root
       # MYSQL_PASSWORD: juan
       MYSQL_ROOT_PASSWORD: 'toor' # TODO: Change this
     ports:
       - "9906:3306"
     volumes:
       - ./data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql #quiero ejecutar el fichero init.sql que 
+      #en la misma carpeta
 
   
