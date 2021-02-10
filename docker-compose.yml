@@ -16,7 +16,8 @@ services:
     ports:
       - "8100:80"
     volumes:
-      - ./AppPHP:/var/www/html
+      - ./AppPHP:/var/www/html #dentro de nuestro proyecto hay una carpeta APPphp y lo va a asociar 
+      #al document root de apache
   mysql:
     container_name: mysqlc
     restart: always
