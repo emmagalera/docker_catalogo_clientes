@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    container_name: apache-php-pdo
+    container_name: apache-php-pdo #nombre del contenedor, porque si no pone uno por defecto
     restart: always
     # lo cual hace que docker-compose busque un Dockerfile en el directorio especificado
     # (. en este caso) y use la imagen que se construirá a partir de dicho archivo.
