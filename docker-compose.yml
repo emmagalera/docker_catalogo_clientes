@@ -5,7 +5,7 @@ services:
     restart: always
     # lo cual hace que docker-compose busque un Dockerfile en el directorio especificado
     # (. en este caso) y use la imagen que se construirá a partir de dicho archivo.
-    build:
+    build: #estoy trabajando con mi dockerfile propio (creado por mi)
       context: ./
       dockerfile: Dockerfile
     #depends_on expresa el orden de inicio (e implícitamente el orden de extracción de imágenes)   
